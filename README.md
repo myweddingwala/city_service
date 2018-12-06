@@ -11,7 +11,9 @@ For now, they can have defined values mentioned below:
 * Auth-Presentation == "Anonymous"
 
 # Curl example to get the list of cities in which myweddingwala operates:
+```bash
 curl -H "Accept: application/json" -H "Myweddingwala-Space: XYZ" -H "Auth-Presentation: Anonymous" http://myweddingwala.com/get/cites"
+```
 
 If the return status is 200, then the key response will contain a key by the name result which will be a list of cities. example return:
 ```javascript
@@ -23,7 +25,9 @@ If the return status is 200, then the key response will contain a key by the nam
 
 
 # Curl example to get the list of services offered by myweddingwala
+```bash
 curl  -H "Accept: application/json" -H "Myweddingwala-Space: XYZ" -H "Auth-Presentation: Anonymous" http://myweddingwala.com/get/services"
+```
 
 If the return status is 200, then the key response will contain a key by the name result which will list all of offered services. Example return:
 
