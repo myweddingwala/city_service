@@ -22,7 +22,7 @@ If the return status is 200, then the key response will contain a key by the nam
 ```
 
 
-# Curl examples to get the list of services offered by myweddingwala
+# Curl example to get the list of services offered by myweddingwala
 curl  -H "Accept: application/json" -H "Myweddingwala-Space: XYZ" -H "Auth-Presentation: Anonymous" http://myweddingwala.com/get/services"
 
 If the return status is 200, then the key response will contain a key by the name result which will list all of offered services. Example return:
