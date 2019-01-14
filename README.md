@@ -38,3 +38,26 @@ If the return status is 200, then the key response will contain a key by the nam
 }
 ```
 
+# Example to post the contact us form.
+There are few required data parameters to perform this request. The list is mentioned below:
+1. name: This is the name of the person trying to contact MyWeddingWala.com with an inquiry. This is a required field.
+2. phone_number: This is the phone number of the person. 
+3. email: This is the email address of the person.
+4. message: This is the user message, which is the actual query text for MyWeddingWala.com representative.
+```bash
+curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://52.90.203.3/inquiry/new' --data '{
+"name": "Sumit Sharma",
+"phone_number": "+91 90000 90000",
+"email": "sumit@gmail.com",
+"message": "This is a foo bar example."
+}'
+```
+
+If the return status is 200, then the form post was successful. Example successful response:
+```javascript
+{
+  "error": false, 
+  "result": "message added to store."
+}
+```
+
