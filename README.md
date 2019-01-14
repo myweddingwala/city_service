@@ -68,7 +68,7 @@ Use this API to register a new customer or verndor to the store.
 1. Use this API to register a new user with a username and password.
 2. If the username is taken, it returns a response which says "user name taken", and can be used to prompt the end user to try a different username.
 
-## Example url's:
+## Example URL's:
 * http://myweddingwala.com/auth/user/<string:user_type>/new/<string:username>
 1. **user_type**: This could be **customer** (if trying to register a new customer), or **vendor** (uf trying to register a new vendor).
 2. **username**: This is the name by which user wants to register. This has to unique. No duplication is allowed.
@@ -107,3 +107,81 @@ The response shows that username "VendorUserName" is already taken.
   "result": "user name taken"
 }
 ```
+
+# Validating if a user/ vendor is a registered user.
+This API could be used to validate if the login is attempted from a register user/vendor.
+
+## Example URL's:
+* http://myweddingwala.com/auth/user/validate/<string:username>
+
+## Example curl command (username/password mismatch).
+```bash
+curl -X PUT -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://52.90.203.3/auth/user/validate/sujkmm' --data '{
+"password":"ADDSS"
+}'
+```
+Response back from the server.
+```javascript
+{
+  "error": false, 
+  "result": "username/password mismatch"
+}
+```
+The above result states that there is a mismatch with either the username or the password.
+
+## Example curl command (Successful login).
+```bash
+curl -X PUT -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://52.90.203.3/auth/user/validate/SumitS' --data '{
+"password":"ADDSS"
+}'
+```
+
+Response back from the server.
+```javascript
+"error": false, 
+"next_query_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDc0NDAzNDMsImlzcyI6Ik15V2VkZGluZ1dhbGEuY29tIiwidXNlciI6IlN1bWl0UyIsImV4cCI6MTU0NzQ0MDk0M30.uw-YSendjf-v6c6AXycGlRA_vjZoG33X8CpQyyn2v-8", 
+  "result": "registered user"
+}
+```
+This response verifies that the user is genuine, add gives the next_query_token key for the next query to either get/upload resources on MyWeddingWala store.
+
+
+# Curl example for adding vendor info to store:
+```bash
+curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://52.90.203.3/vendor/SumitS/city/chandigarh/new_registration' --data '{
+"vendor_name": "SumitS",
+"city": "chandigarh",
+"contact_person_name":"Sumit Sharma",
+"email":"Sumit@gmail.com",
+"fax": "+123123",
+"website_url": "https://somelinkhere",
+"business_name":"Sumit Wedding Farms",
+"vendor_type": "Farm House Wedding",
+"address":{
+    "first line": "1234 roada road",
+    "city": "chandigarh",
+    "state": "chandigarh",
+    "Country": "India",
+    "zip code": "160047"
+},
+"phone":{
+   "telephone_number": "0172 6644425",
+   "mobile_number": "+91 96541 85515"
+},
+"about_me": "Its a family owned business, which is great, blah blah blah blah \n adad \t adsad",
+"information": {
+    "price_per_plate": "1000"
+},
+"cities": ["chandigarh", "mohali", "zirakpur"]
+}'
+```
+
+
+Response back from server.
+```javascript
+{
+  "error": false, 
+  "message": "Vendor registered successfully"
+}
+```
+
