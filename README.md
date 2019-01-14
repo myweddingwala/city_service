@@ -38,9 +38,9 @@ If the return status is 200, then the key response will contain a key by the nam
 }
 ```
 
-# Example to post the contact us form.
+# Example to post the "contact-us" form.
 There are few required data parameters to perform this request. The list is mentioned below:
-1. name: This is the name of the person trying to contact MyWeddingWala.com with an inquiry. This is a required field.
+1. name: This is the name of the person trying to contact MyWeddingWala.com with an inquiry.
 2. phone_number: This is the phone number of the person. 
 3. email: This is the email address of the person.
 4. message: This is the user message, which is the actual query text for MyWeddingWala.com representative.
@@ -63,14 +63,15 @@ If the return status is 200, then the form post was successful. Example successf
 
 
 # Add a new user(customer)/vendor to store
-Use this API to register a new customer or verndor to the store.
+Use this API to register a new customer or vendor to the store.
+
 ## Use Cases:
 1. Use this API to register a new user with a username and password.
 2. If the username is taken, it returns a response which says "user name taken", and can be used to prompt the end user to try a different username.
 
 ## Example URL's:
-* http://myweddingwala.com/auth/user/<string:user_type>/new/<string:username>
-1. **user_type**: This could be **customer** (if trying to register a new customer), or **vendor** (uf trying to register a new vendor).
+* `http://myweddingwala.com/auth/user/<string:user_type>/new/<string:username>`
+1. **user_type**: This could be **customer** (if trying to register a new customer), or **vendor** (if trying to register a new vendor).
 2. **username**: This is the name by which user wants to register. This has to unique. No duplication is allowed.
 
 ## Example curl post command which is successful
@@ -109,10 +110,10 @@ The response shows that username "VendorUserName" is already taken.
 ```
 
 # Validating if a user/ vendor is a registered user.
-This API could be used to validate if the login is attempted from a register user/vendor.
+This API could be used to validate if the login is attempted from a registered user/vendor.
 
-## Example URL's:
-* http://myweddingwala.com/auth/user/validate/<string:username>
+## Example URL:
+* `http://myweddingwala.com/auth/user/validate/<string:username>`
 
 ## Example curl command (username/password mismatch).
 ```bash
@@ -127,7 +128,7 @@ Response back from the server.
   "result": "username/password mismatch"
 }
 ```
-The above result states that there is a mismatch with either the username or the password.
+The above result states that there is a mismatch with either the username or the password. Therefore, its not a valid request from user.
 
 ## Example curl command (Successful login).
 ```bash
@@ -147,6 +148,9 @@ This response verifies that the user is genuine, add gives the next_query_token 
 
 
 # Curl example for adding vendor info to store:
+
+## Example URL:
+* `http://myweddingwala.com/vendor/<string:vendor_name>/city/<string:city_name>/new_registration`
 ```bash
 curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://52.90.203.3/vendor/SumitS/city/chandigarh/new_registration' --data '{
 "vendor_name": "SumitS",
@@ -184,4 +188,5 @@ Response back from server.
   "message": "Vendor registered successfully"
 }
 ```
+As per the response from the server, the request was successfully fulfilled and the user information has been stored.
 
