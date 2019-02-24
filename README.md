@@ -190,3 +190,65 @@ Response back from server.
 ```
 As per the response from the server, the request was successfully fulfilled and the user information has been stored.
 
+
+# Curl example for Adding Checklist Item for a User to store:
+
+## Example URL:
+* `http://myweddingwala.com/user/<string:user_name>/checklist`
+```bash
+curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/checklist' --data '{
+"date": "2019-02-23",
+"items": [{"id": "item1", "status": "Green", "name": "Invite people"}, {"id": "item2", "status": "Green", "name": "Order flowers"}],
+"event_type": "Roka"
+}'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "retry": false
+}
+```
+
+As per the response from the server, the request was successfully fulfilled and the user checklist information has been stored.
+
+
+# Curl example for Getting Checklist Items for a User from store
+
+## Example URL:
+
+* `http://myweddingwala.com/user/<string:user_name>/checklist`
+```bash
+curl -X GET -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/checklist'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "response": [{
+    "date": "2019-02-23",
+    "event_type": "Roka",
+    "items": [{
+      "id": "item1",
+      "name": "Invite people",
+      "status": "Green"
+    }, {
+      "id": "item2",
+      "name": "Order flowers",
+      "status": "Green"
+    }]
+  }, {
+    "date": "2019-02-23",
+    "event_type": "checklist",
+    "items": [{
+      "hi": "hello"
+    }, {
+      "hello": "ASD"
+    }]
+  }]
+}
+```
+
+As per the response from the server, the request was successfully fulfilled and all the checklists created by the user "shasumit" were returned.
