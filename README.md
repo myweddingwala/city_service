@@ -331,6 +331,7 @@ Response back from server.
 ```
 
 **Following request adds a single guest (If you want to add a single guest which doesn't belong to any category, then perform the request without category key in the data payload**
+* Required keys for the item are "first_name", "last_name", and "party_size".
 ```bash
 curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/guestlist' --data '{
 "category": "ceremony",
@@ -419,6 +420,9 @@ Response back from server.
 }
 ```
 
+As per the response from the server, the request was successfully fulfilled and all the entire guest list of the user was returned.
+
+
 # Curl example for Getting User's guest list specific to a category from store.
 
 ## Example URL:
@@ -456,7 +460,4 @@ Response back from server.
 }
 ```
 
-
-
-As per the response from the server, the request was successfully fulfilled and all the checklists created by the user "shasumit" were returned.
-
+As per the response from the server, the request was successfully fulfilled and all the guest list for the function "Sangeet Ceremony" was returned.
