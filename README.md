@@ -195,6 +195,7 @@ As per the response from the server, the request was successfully fulfilled and 
 
 ## Example URL:
 * `http://myweddingwala.com/user/<string:user_name>/checklist`
+* Items list could have any number of attributes, only required one is the id.
 ```bash
 curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/checklist' --data '{
 "date": "2019-02-23",
