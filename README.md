@@ -306,3 +306,157 @@ Response back from server.
 ```
 
 As per the response from the server, the request was successfully fulfilled and all the checklists created by the user "shasumit" were returned.
+
+
+
+# Curl example for Adding GuestList within a category to the store
+
+## Example URL:
+* `http://myweddingwala.com/user/<string:user_name>/guestlist`
+
+**Following request adds multiple guests in single go**
+```bash
+curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/guestlist' --data '{
+"category": "ceremony",
+"items": [{"first_name": "Sumit", "last_name": "Sharma", "party_size": 3, "phone": "981231231", "email": "shas@gmail", "address": {"first_line": "102", "second_line": "city and so on"}}, {"first_name": "sameer", "last_name": "raghuwanshi", "party_size": 1}, {"first_name": "Saurabh", "last_name": "raghuwanshi", "party_size": 2}]
+}'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "response": "Added data to store."
+}
+```
+
+**Following request adds a single guest (If you want to add a single guest which doesn't belong to any category, then perform the request without category key in the data payload**
+```bash
+curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/guestlist' --data '{
+"category": "ceremony",
+"items": [{"first_name": "Sumit", "last_name": "Sharma", "party_size": 3, "phone": "981231231", "email": "shas@gmail", "address": {"first_line": "102", "second_line": "city and so on"}}, {"first_name": "sameer", "last_name": "raghuwanshi", "party_size": 1}, {"first_name": "Saurabh", "last_name": "raghuwanshi", "party_size": 2}]
+}'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "response": "Added data to store."
+}
+```
+
+As per the response from the server, the request was successfully fulfilled and the user guestlist information has been stored.
+
+
+# Curl example for Getting User's ENTIRE guest list from store
+
+## Example URL:
+
+* `http://myweddingwala.com/user/<string:user_name>/guestlist`
+```bash
+curl -X GET -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/guestlist'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "response": [{
+    "Sangeet Ceremony": [{
+      "address": {
+        "first_line": "102",
+        "second_line": "city and so on"
+      },
+      "email": "shas@gmail",
+      "first_name": "Sumit",
+      "last_name": "Sharma",
+      "party_size": 3,
+      "phone": "981231231"
+    }, {
+      "first_name": "sameer",
+      "last_name": "raghuwanshi",
+      "party_size": 1
+    }, {
+      "first_name": "Saurabh",
+      "last_name": "raghuwanshi",
+      "party_size": 2
+    }],
+    "ceremony": [{
+      "address": {
+        "first_line": "102",
+        "second_line": "city and so on"
+      },
+      "email": "shas@gmail",
+      "first_name": "Sumit",
+      "last_name": "Sharma",
+      "party_size": 3,
+      "phone": "981231231"
+    }, {
+      "first_name": "sameer",
+      "last_name": "raghuwanshi",
+      "party_size": 1
+    }, {
+      "first_name": "Saurabh",
+      "last_name": "raghuwanshi",
+      "party_size": 2
+    }, {
+      "address": {
+        "first_line": "102",
+        "second_line": "city and so on"
+      },
+      "email": "shas@gmail",
+      "first_name": "Sumit",
+      "last_name": "Sharma",
+      "party_size": 3,
+      "phone": "981231231"
+    }, {
+      "first_name": "sameer",
+      "last_name": "raghuwanshi",
+      "party_size": 1
+    }]
+  }]
+}
+```
+
+# Curl example for Getting User's guest list specific to a category from store.
+
+## Example URL:
+
+* `http://myweddingwala.com/user/<string:user_name>/guestlist/<string:category>`
+```bash
+curl -X GET -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/guestlist/Sangeet Ceremony'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "response": [{
+    "Sangeet Ceremony": [{
+      "address": {
+        "first_line": "102",
+        "second_line": "city and so on"
+      },
+      "email": "shas@gmail",
+      "first_name": "Sumit",
+      "last_name": "Sharma",
+      "party_size": 3,
+      "phone": "981231231"
+    }, {
+      "first_name": "sameer",
+      "last_name": "raghuwanshi",
+      "party_size": 1
+    }, {
+      "first_name": "Saurabh",
+      "last_name": "raghuwanshi",
+      "party_size": 2
+    }]
+  }]
+}
+```
+
+
+
+As per the response from the server, the request was successfully fulfilled and all the checklists created by the user "shasumit" were returned.
+
