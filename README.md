@@ -252,3 +252,56 @@ Response back from server.
 ```
 
 As per the response from the server, the request was successfully fulfilled and all the checklists created by the user "shasumit" were returned.
+
+
+
+# Curl example for Adding Estimate Block to the store
+
+## Example URL:
+* `http://myweddingwala.com/user/<string:user_name>/estimate`
+```bash
+curl -X POST -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/estimate' --data '{
+"category": "ceremony",
+"items": [{"ceremony": "Roka Venue", "estimated_cost": "123000", "actual_cost": "120000"}, {"ceremony": "Roka Decoration", "estimated_cost": "10000", "actual_cost": "9000"}]
+}'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "response": "Added data to store."
+}
+```
+
+As per the response from the server, the request was successfully fulfilled and the user checklist information has been stored.
+
+
+# Curl example for Getting User Entered Estimate Items for a User from store
+
+## Example URL:
+
+* `http://myweddingwala.com/user/<string:user_name>/estimate`
+```bash
+curl -X GET -H 'Content-Type: application/json' -H 'Myweddingwala-Space: XYZ' -H 'Auth-Presentation: Anonymous' -i 'http://myweddingwala.com/user/shasumit/estimate'
+```
+
+Response back from server.
+```javascript
+{
+  "error": false,
+  "response": [{
+    "ceremony": [{
+      "actual_cost": "9000",
+      "ceremony": "Roka Decoration",
+      "estimated_cost": "10000"
+    }, {
+      "actual_cost": "120000",
+      "ceremony": "Roka Venue",
+      "estimated_cost": "123000"
+    }]
+  }]
+}
+```
+
+As per the response from the server, the request was successfully fulfilled and all the checklists created by the user "shasumit" were returned.
